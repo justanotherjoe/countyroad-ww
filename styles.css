@@ -55,16 +55,15 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--oak-dark);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
 }
 
-.nav-logo span {
-  color: var(--oak);
-  font-style: italic;
+.nav-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -768,15 +767,16 @@ footer {
 }
 
 .footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  color: var(--cream);
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-.footer-logo span {
-  font-style: italic;
-  color: var(--oak-light);
+.footer-logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+  filter: invert(1) brightness(2);
 }
 
 .footer-copy {
