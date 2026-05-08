@@ -397,6 +397,60 @@ section {
     line-height: 1.6;
 }
 
+/* Gallery tab bar */
+.gallery-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--sand);
+}
+
+.gallery-tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; /* overlap the parent border so active tab connects */
+    padding: 0.85rem 1.25rem;
+    font-family: "Lato", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ash);
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    white-space: nowrap;
+}
+
+.gallery-tab:hover {
+    color: var(--oak-dark);
+}
+
+.gallery-tab.is-active {
+    color: var(--oak-dark);
+    border-bottom-color: var(--oak);
+}
+
+.gallery-tab:focus-visible {
+    outline: 2px solid var(--oak-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Empty-state message when a category has no photos yet */
+.gallery-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--ash);
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
 /* Gallery carousel */
 .gallery-carousel {
     position: relative;
@@ -415,6 +469,11 @@ section {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 0.5rem;
+    transition: opacity 0.18s ease;
+}
+
+.gallery-track.is-fading {
+    opacity: 0;
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -1038,34 +1097,63 @@ footer {
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 900px) {
-    .about-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .gallery-slide {
-        flex: 0 0 calc((100% - 1rem) / 2); /* 2 visible on tablet */
-    }
-}
-
-@media (max-width: 640px) {
+/* ---- Large tablet / small desktop (≤1024px) ---- */
+@media (max-width: 1024px) {
     nav {
-        padding: 0.5rem 1.25rem;
-        height: 100px;
+        height: 120px;
+        padding: 0.5rem 2rem;
     }
 
     .nav-logo-img {
-        height: 80px;
-    }
-
-    .hero {
-        padding-top: 130px;
+        height: 100px;
     }
 
     .nav-links {
-        gap: 1.25rem;
+        gap: 1.75rem;
+    }
+
+    .hero {
+        padding-top: 160px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    section {
+        padding: 5rem 1.75rem;
+    }
+}
+
+/* ---- Tablet portrait (≤900px) ---- */
+@media (max-width: 900px) {
+    nav {
+        height: 115px;
+        padding: 0.5rem 1.5rem;
+    }
+
+    .nav-logo-img {
+        height: 95px;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .hero {
+        padding-top: 150px;
+    }
+
+    section {
+        padding: 4rem 1.5rem;
+    }
+
+    .craft-strip {
+        padding: 3rem 1.5rem;
     }
 
     .craft-grid {
@@ -1073,6 +1161,7 @@ footer {
     }
 
     .craft-card {
+        padding: 2rem 1.5rem;
         border-right: none;
         border-bottom: 1px solid var(--sand);
     }
@@ -1081,9 +1170,147 @@ footer {
         border-right: 1px solid var(--sand);
     }
 
-    .craft-card:last-child,
-    .craft-card:nth-last-child(2):nth-child(odd) {
+    .craft-card:nth-last-child(-n + 2) {
         border-bottom: none;
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-img-box {
+        height: 360px;
+    }
+
+    .gallery-slide {
+        flex: 0 0 calc((100% - 1rem) / 2); /* 2 visible on tablet */
+    }
+
+    .testimonials-section {
+        padding: 4.5rem 1.5rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .stats-row {
+        gap: 2rem;
+    }
+}
+
+/* ---- Phone (≤640px) ---- */
+@media (max-width: 640px) {
+    /* Stack the nav so logo + links don't crowd */
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 0.6rem 1rem 0.7rem;
+        gap: 0.5rem;
+    }
+
+    .nav-logo-img {
+        height: 105px;
+    }
+
+    .nav-links {
+        gap: 1.25rem;
+    }
+
+    .nav-links a {
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 200px 1.25rem 3.5rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.7rem;
+        gap: 0.6rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+        width: 24px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.25rem, 9vw, 3rem);
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-sub {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-ctas .btn-primary,
+    .hero-ctas .btn-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.75rem, 6vw, 2.25rem);
+    }
+
+    .craft-strip {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .craft-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .craft-card {
+        padding: 1.75rem 1.25rem;
+        border-right: none !important;
+        border-bottom: 1px solid var(--sand);
+    }
+
+    .craft-card:last-child {
+        border-bottom: none;
+    }
+
+    .gallery-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Tabs: scroll horizontally instead of wrapping */
+    .gallery-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -1.25rem 1.5rem;
+        padding: 0 1.25rem;
+    }
+    .gallery-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    .gallery-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+        flex-shrink: 0;
     }
 
     .gallery-slide {
@@ -1091,17 +1318,76 @@ footer {
     }
 
     .gallery-arrow {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .about-img-box {
+        height: 280px;
     }
 
     .stats-row {
-        gap: 1.5rem;
+        gap: 1rem;
+        margin: 2rem 0;
+        padding: 1.5rem 0;
+    }
+
+    .stat-num {
+        font-size: 1.85rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .testimonial-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .cta-banner {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .cta-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .contact-detail {
+        gap: 0.85rem;
+        padding: 1rem 0;
+    }
+
+    .contact-detail-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .contact-form {
+        gap: 1rem;
+    }
+
+    /* 16px font-size on inputs prevents iOS Safari from auto-zooming on focus */
+    .form-input {
+        font-size: 16px;
+    }
+
+    .form-textarea {
+        min-height: 110px;
+    }
+
+    .btn-submit {
+        align-self: stretch;
+        text-align: center;
     }
 
     footer {
         flex-direction: column;
         text-align: center;
+        padding: 2.5rem 1.25rem;
+    }
+
+    .footer-logo-img {
+        height: 50px;
     }
 
     .footer-links {
@@ -1109,8 +1395,61 @@ footer {
         flex-wrap: wrap;
         gap: 1rem;
     }
+}
 
-    .hero-ctas {
-        flex-direction: column;
+/* ---- Small phone (≤400px) ---- */
+@media (max-width: 400px) {
+    .nav-logo-img {
+        height: 90px;
+    }
+
+    .nav-links {
+        gap: 0.85rem;
+    }
+
+    .nav-links a {
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+    }
+
+    .hero {
+        padding-top: 180px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .stats-row {
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+}
+
+/* ---- Touch devices: hover effects don't apply, so make the
+   "tap to expand" cue persistent and skip the hover lift. ---- */
+@media (hover: none) {
+    .gallery-slide {
+        cursor: pointer;
+    }
+
+    .gallery-slide::after {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+    .gallery-slide:hover {
+        transform: none;
+        box-shadow: 0 1px 2px rgba(44, 36, 32, 0.04);
+    }
+
+    .gallery-slide:hover img {
+        transform: none;
+        filter: none;
+    }
+
+    .gallery-slide:hover figcaption {
+        opacity: 0;
+        transform: translateY(8px);
     }
 }

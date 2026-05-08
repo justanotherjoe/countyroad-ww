@@ -93,7 +93,15 @@
           <p class="section-label">Our Work</p>
           <h2 class="section-title">Crafted with <em>Care</em></h2>
         </div>
-        <p class="gallery-note">A look at recent pieces — swipe or use the arrows to explore.</p>
+        <p class="gallery-note">Browse our work by category — tap or click any image to view it full-size.</p>
+      </div>
+
+      <!-- Tab bar (categories) -->
+      <div class="gallery-tabs" role="tablist" aria-label="Gallery categories">
+        <button class="gallery-tab is-active" data-gallery="cabinetry" role="tab" type="button" aria-selected="true">Custom Cabinetry</button>
+        <button class="gallery-tab" data-gallery="tables" role="tab" type="button" aria-selected="false">Tables &amp; Furniture</button>
+        <button class="gallery-tab" data-gallery="shelving" role="tab" type="button" aria-selected="false">Shelving &amp; Storage</button>
+        <button class="gallery-tab" data-gallery="specialty" role="tab" type="button" aria-selected="false">Specialty &amp; Custom</button>
       </div>
 
       <div class="gallery-carousel">
@@ -101,53 +109,18 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
 
-        <div class="gallery-track" id="galleryTrack">
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/woodworking,table?lock=11" alt="Custom dining table" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood11/800/600'">
-            <figcaption>Custom Dining Table</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/woodworking,joinery?lock=22" alt="Hand-cut joinery detail" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood22/800/600'">
-            <figcaption>Hand-Cut Joinery</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/walnut,furniture?lock=33" alt="Walnut side table" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood33/800/600'">
-            <figcaption>Walnut Side Table</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/woodshop,workshop?lock=44" alt="Wood shavings in the workshop" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood44/800/600'">
-            <figcaption>From the Workshop</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/workbench,carpentry?lock=55" alt="Workbench with tools" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood55/800/600'">
-            <figcaption>The Bench</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/oak,chair?lock=66" alt="Solid oak chair" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood66/800/600'">
-            <figcaption>Solid Oak Seating</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/chisel,tools?lock=77" alt="Woodworking chisels" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood77/800/600'">
-            <figcaption>Tools of the Trade</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/liveedge,shelf?lock=88" alt="Live edge shelf" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood88/800/600'">
-            <figcaption>Live-Edge Shelf</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/handplane,wood?lock=99" alt="Hand plane on wood" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood99/800/600'">
-            <figcaption>Hand-Planed Finish</figcaption>
-          </figure>
-          <figure class="gallery-slide">
-            <img src="https://loremflickr.com/800/600/barndoor,wood?lock=101" alt="Rustic barn door" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/wood101/800/600'">
-            <figcaption>Barn Door &amp; Hardware</figcaption>
-          </figure>
-        </div>
+        <!-- Slides are rendered into this track by JS based on the active tab -->
+        <div class="gallery-track" id="galleryTrack" role="tabpanel"></div>
 
         <button class="gallery-arrow gallery-arrow--next" aria-label="Next image" type="button">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
+
+      <!-- Empty-state message (shown when a category has no images yet) -->
+      <p class="gallery-empty" id="galleryEmpty" hidden>
+        No photos in this category yet — check back soon.
+      </p>
     </div>
   </section>
 
@@ -329,14 +302,99 @@
   </div>
 
   <script>
+    /* =========================================================
+       GALLERY CONFIG
+       ---------------------------------------------------------
+       To add a photo to a gallery:
+         1. Drop the image file into the matching folder
+            (e.g. gallery/cabinetry/kitchen-01.jpg)
+         2. Add an entry below in the right "images" array:
+            { src: 'gallery/cabinetry/kitchen-01.jpg',
+              caption: 'Walnut Kitchen' }
+         3. Save and refresh.
+
+       The "src" can also be a remote URL (https://...) — handy
+       for placeholders. Order in the array = order in the
+       carousel. Set "images: []" for an empty category and the
+       gallery will show a "no photos yet" message.
+       ========================================================= */
+    const GALLERIES = {
+      cabinetry: {
+        label: 'Custom Cabinetry',
+        images: [
+          { src: 'gallery/cabinetry/29998.png', caption: 'Custom Service Counter' },
+          { src: 'gallery/cabinetry/30000.png', caption: 'Herringbone Bar Build' },
+        ]
+      },
+      tables: {
+        label: 'Tables & Furniture',
+        images: [
+          { src: 'gallery/tables/29999.png', caption: 'Built-In Counter & Seating' },
+          { src: 'gallery/tables/30009.png', caption: 'Dart Room High-Tops' },
+          { src: 'gallery/tables/30010.png', caption: 'Dining Hall' },
+        ]
+      },
+      shelving: {
+        label: 'Shelving & Storage',
+        images: [
+          // No photos in this category yet — drop images into
+          // gallery/shelving/ and add entries here when ready.
+        ]
+      },
+      specialty: {
+        label: 'Specialty & Custom',
+        images: [
+          { src: 'gallery/specialty/30011.png', caption: 'Custom Entrance Doors' },
+          { src: 'gallery/specialty/30012.png', caption: 'Carved Entrance Detail' },
+          { src: 'gallery/specialty/30008.png', caption: 'Reclaimed Wood Wall' },
+          { src: 'gallery/specialty/30001.png', caption: 'Custom Interior Door' },
+          { src: 'gallery/specialty/30007.png', caption: 'Custom Interior Door' },
+        ]
+      },
+    };
+
     (function () {
-      const track = document.getElementById('galleryTrack');
-      if (!track) return;
+      const track   = document.getElementById('galleryTrack');
+      const empty   = document.getElementById('galleryEmpty');
+      const tabs    = Array.from(document.querySelectorAll('.gallery-tab'));
+      if (!track || tabs.length === 0) return;
+
       const prev = document.querySelector('.gallery-arrow--prev');
       const next = document.querySelector('.gallery-arrow--next');
 
+      let currentGalleryId = tabs.find(t => t.classList.contains('is-active'))?.dataset.gallery || tabs[0].dataset.gallery;
+
+      // ---- Render slides for the active gallery ----
+      function renderGallery(id) {
+        const gallery = GALLERIES[id];
+        track.innerHTML = '';
+        if (!gallery || gallery.images.length === 0) {
+          empty.hidden = false;
+          track.style.minHeight = '0';
+          updateArrows();
+          return;
+        }
+        empty.hidden = true;
+        track.style.minHeight = '';
+
+        gallery.images.forEach((img, i) => {
+          const figure = document.createElement('figure');
+          figure.className = 'gallery-slide';
+          figure.dataset.index = String(i);
+          // Fallback to a deterministic picsum image if the primary src 404s.
+          const fallback = `https://picsum.photos/seed/${id}-${i}/800/600`;
+          figure.innerHTML =
+            '<img src="' + img.src + '" alt="' + (img.caption || '') + '" loading="lazy" ' +
+            'onerror="this.onerror=null;this.src=\'' + fallback + '\'">' +
+            (img.caption ? '<figcaption>' + img.caption + '</figcaption>' : '');
+          track.appendChild(figure);
+        });
+        track.scrollLeft = 0;
+        updateArrows();
+      }
+
+      // ---- Carousel arrows ----
       function step() {
-        // Scroll by the width of one slide (including gap)
         const slide = track.querySelector('.gallery-slide');
         if (!slide) return 400;
         const styles = window.getComputedStyle(track);
@@ -345,20 +403,41 @@
       }
 
       function updateArrows() {
+        const slides = track.querySelectorAll('.gallery-slide');
+        if (slides.length === 0) {
+          prev.disabled = true;
+          next.disabled = true;
+          return;
+        }
         const max = track.scrollWidth - track.clientWidth - 1;
         prev.disabled = track.scrollLeft <= 0;
         next.disabled = track.scrollLeft >= max;
       }
 
-      prev.addEventListener('click', () => {
-        track.scrollBy({ left: -step(), behavior: 'smooth' });
-      });
-      next.addEventListener('click', () => {
-        track.scrollBy({ left: step(), behavior: 'smooth' });
-      });
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
       track.addEventListener('scroll', updateArrows, { passive: true });
       window.addEventListener('resize', updateArrows);
-      updateArrows();
+
+      // ---- Tab switching with fade transition ----
+      function activateTab(id) {
+        if (id === currentGalleryId) return;
+        currentGalleryId = id;
+        tabs.forEach(t => {
+          const active = t.dataset.gallery === id;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', String(active));
+        });
+        track.classList.add('is-fading');
+        setTimeout(() => {
+          renderGallery(id);
+          track.classList.remove('is-fading');
+        }, 180);
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activateTab(tab.dataset.gallery));
+      });
 
       // ---- Lightbox ----
       const lightbox      = document.getElementById('lightbox');
@@ -367,11 +446,16 @@
       const lightboxClose = document.getElementById('lightboxClose');
       const lightboxPrev  = document.getElementById('lightboxPrev');
       const lightboxNext  = document.getElementById('lightboxNext');
-      const slides        = Array.from(track.querySelectorAll('.gallery-slide'));
-      let currentIndex    = 0;
+      let currentLightboxIndex = 0;
+
+      function getCurrentSlides() {
+        return Array.from(track.querySelectorAll('.gallery-slide'));
+      }
 
       function openLightbox(index) {
-        currentIndex = index;
+        const slides = getCurrentSlides();
+        if (!slides[index]) return;
+        currentLightboxIndex = index;
         const slide = slides[index];
         const img = slide.querySelector('img');
         const cap = slide.querySelector('figcaption');
@@ -379,7 +463,6 @@
         lightboxImg.alt = img.alt || '';
         lightboxCap.textContent = cap ? cap.textContent : '';
         lightbox.hidden = false;
-        // double rAF so the transition runs after `hidden` is removed
         requestAnimationFrame(() => requestAnimationFrame(() => {
           lightbox.classList.add('is-open');
         }));
@@ -390,40 +473,45 @@
       function closeLightbox() {
         lightbox.classList.remove('is-open');
         document.body.style.overflow = '';
-        // wait for fade-out transition before hiding
         setTimeout(() => { lightbox.hidden = true; }, 250);
       }
 
       function showAt(index) {
+        const slides = getCurrentSlides();
         if (index < 0 || index >= slides.length) return;
         openLightbox(index);
       }
 
       function updateLightboxArrows() {
-        lightboxPrev.disabled = currentIndex <= 0;
-        lightboxNext.disabled = currentIndex >= slides.length - 1;
+        const slides = getCurrentSlides();
+        lightboxPrev.disabled = currentLightboxIndex <= 0;
+        lightboxNext.disabled = currentLightboxIndex >= slides.length - 1;
       }
 
-      slides.forEach((slide, i) => {
-        slide.addEventListener('click', () => openLightbox(i));
+      // Use event delegation so it works after re-renders
+      track.addEventListener('click', (e) => {
+        const slide = e.target.closest('.gallery-slide');
+        if (!slide) return;
+        const slides = getCurrentSlides();
+        const index = slides.indexOf(slide);
+        if (index >= 0) openLightbox(index);
       });
 
       lightboxClose.addEventListener('click', closeLightbox);
-      lightboxPrev.addEventListener('click', () => showAt(currentIndex - 1));
-      lightboxNext.addEventListener('click', () => showAt(currentIndex + 1));
-
-      // Click outside the image to close
+      lightboxPrev.addEventListener('click', () => showAt(currentLightboxIndex - 1));
+      lightboxNext.addEventListener('click', () => showAt(currentLightboxIndex + 1));
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
       });
-
-      // Keyboard: ESC to close, arrows to navigate
       document.addEventListener('keydown', (e) => {
         if (lightbox.hidden) return;
-        if (e.key === 'Escape')      closeLightbox();
-        if (e.key === 'ArrowLeft')   showAt(currentIndex - 1);
-        if (e.key === 'ArrowRight')  showAt(currentIndex + 1);
+        if (e.key === 'Escape')     closeLightbox();
+        if (e.key === 'ArrowLeft')  showAt(currentLightboxIndex - 1);
+        if (e.key === 'ArrowRight') showAt(currentLightboxIndex + 1);
       });
+
+      // ---- Initial render ----
+      renderGallery(currentGalleryId);
     })();
   </script>
 
