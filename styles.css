@@ -52,19 +52,25 @@ nav {
     padding: 0.5rem 2.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 130px;
+    justify-content: flex-end;
+    height: 150px;
 }
 
+/* Absolutely center the logo so the nav links can flow on the right
+   without affecting where the logo sits */
 .nav-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     text-decoration: none;
     display: flex;
     align-items: center;
 }
 
 .nav-logo-img {
-    height: 200px;
-    width: 200px;
+    height: 125px;
+    width: auto;
     display: block;
 }
 
@@ -219,7 +225,7 @@ section {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 170px 2rem 4rem;
+    padding: 190px 2rem 4rem;
 }
 
 .hero-grain {
@@ -1100,12 +1106,12 @@ footer {
 /* ---- Large tablet / small desktop (≤1024px) ---- */
 @media (max-width: 1024px) {
     nav {
-        height: 120px;
+        height: 90px;
         padding: 0.5rem 2rem;
     }
 
     .nav-logo-img {
-        height: 100px;
+        height: 68px;
     }
 
     .nav-links {
@@ -1113,7 +1119,7 @@ footer {
     }
 
     .hero {
-        padding-top: 160px;
+        padding-top: 130px;
     }
 
     .hero h1 {
@@ -1128,12 +1134,12 @@ footer {
 /* ---- Tablet portrait (≤900px) ---- */
 @media (max-width: 900px) {
     nav {
-        height: 115px;
+        height: 85px;
         padding: 0.5rem 1.5rem;
     }
 
     .nav-logo-img {
-        height: 95px;
+        height: 62px;
     }
 
     .nav-links {
@@ -1145,7 +1151,7 @@ footer {
     }
 
     .hero {
-        padding-top: 150px;
+        padding-top: 120px;
     }
 
     section {
@@ -1208,13 +1214,20 @@ footer {
     /* Stack the nav so logo + links don't crowd */
     nav {
         flex-direction: column;
+        justify-content: center;
         height: auto;
         padding: 0.6rem 1rem 0.7rem;
         gap: 0.5rem;
     }
 
+    /* Reset the absolute centering — column flex centers it naturally */
+    .nav-logo {
+        position: static;
+        transform: none;
+    }
+
     .nav-logo-img {
-        height: 105px;
+        height: 80px;
     }
 
     .nav-links {
@@ -1228,7 +1241,7 @@ footer {
 
     .hero {
         min-height: auto;
-        padding: 200px 1.25rem 3.5rem;
+        padding: 165px 1.25rem 3.5rem;
     }
 
     .hero-eyebrow {
@@ -1400,7 +1413,7 @@ footer {
 /* ---- Small phone (≤400px) ---- */
 @media (max-width: 400px) {
     .nav-logo-img {
-        height: 90px;
+        height: 68px;
     }
 
     .nav-links {
@@ -1413,7 +1426,7 @@ footer {
     }
 
     .hero {
-        padding-top: 180px;
+        padding-top: 150px;
     }
 
     .hero h1 {
