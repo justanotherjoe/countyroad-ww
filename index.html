@@ -135,7 +135,7 @@
           <p class="section-label">About Us</p>
           <h2 class="section-title">Wood, Craft, &amp; <em>Passion</em></h2>
           <p class="section-body" style="margin-left:auto; margin-right:auto;">County Road Woodworking was built on a simple belief: that the best work is made by hand, with care, using the finest materials. We're a family-owned shop, and every project — big or small — gets treated like it's going into our own home.</p>
-          <p class="section-body section-body--spaced" style="margin-left:auto; margin-right:auto;">Whether you're looking for a custom kitchen, a commercial build-out, a statement dining table, or doors and millwork for any space, we'll work with you from first sketch to final finish. Everything we build is made in-house — nothing is ever subbed out.</p>
+          <p class="section-body section-body--spaced" style="margin-left:auto; margin-right:auto;">Whether you're looking for a custom kitchen, a commercial build-out, a statement dining table, or doors and millwork for any space, we'll work with you from first sketch to final finish. Everything we build is made in-house — ensuring that quality is done at every step.</p>
           <div class="stats-row" style="justify-content:center;">
             <div class="stat" style="text-align:center;">
               <span class="stat-num">15+</span>
@@ -422,11 +422,8 @@
           const figure = document.createElement('figure');
           figure.className = 'gallery-slide';
           figure.dataset.index = String(i);
-          // Fallback to a deterministic picsum image if the primary src 404s.
-          const fallback = `https://picsum.photos/seed/${id}-${i}/800/600`;
           figure.innerHTML =
-            '<img src="' + img.src + '" alt="' + (img.caption || '') + '" loading="lazy" ' +
-            'onerror="this.onerror=null;this.src=\'' + fallback + '\'">' +
+            '<img src="' + img.src + '" alt="' + (img.caption || '') + '" loading="lazy">' +
             (img.caption ? '<figcaption>' + img.caption + '</figcaption>' : '');
           track.appendChild(figure);
         });
