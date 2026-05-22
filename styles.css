@@ -1003,6 +1003,16 @@ section {
     color: var(--charcoal);
 }
 
+.contact-detail-link {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-detail-link:hover {
+    color: var(--oak);
+    text-decoration: underline;
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;

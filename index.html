@@ -99,6 +99,7 @@
       <!-- Tab bar (categories) -->
       <div class="gallery-tabs" role="tablist" aria-label="Gallery categories">
         <button class="gallery-tab is-active" data-gallery="cabinetry" role="tab" type="button" aria-selected="true">Custom Cabinetry</button>
+        <button class="gallery-tab" data-gallery="commercial" role="tab" type="button" aria-selected="false">Commercial</button>
         <button class="gallery-tab" data-gallery="tables" role="tab" type="button" aria-selected="false">Tables &amp; Furniture</button>
         <button class="gallery-tab" data-gallery="shelving" role="tab" type="button" aria-selected="false">Shelving &amp; Storage</button>
         <button class="gallery-tab" data-gallery="specialty" role="tab" type="button" aria-selected="false">Doors &amp; Millwork</button>
@@ -127,37 +128,30 @@
   <!-- ABOUT -->
   <section id="about" class="about-section">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-visual">
-          <div class="about-img-box">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#5C3D1E" stroke-width="1.5">
-              <path d="M10 50 L10 20 L30 10 L50 20 L50 50 Z"/>
-              <rect x="22" y="36" width="16" height="14"/>
-              <rect x="16" y="24" width="10" height="10"/>
-              <rect x="34" y="24" width="10" height="10"/>
-            </svg>
-            <span>Your photo here</span>
-          </div>
-        </div>
+      
+      <div class="about-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; text-align: center;">
         <div class="about-text">
+
           <p class="section-label">About Us</p>
           <h2 class="section-title">Wood, Craft, &amp; <em>Passion</em></h2>
-          <p class="section-body">County Road Woodworking was built on a simple belief: that the best work is made by hand, with care, using the finest materials. We're a family-owned shop, and every project — big or small — gets treated like it's going into our own home.</p>
-          <p class="section-body section-body--spaced">Whether you're looking for a custom kitchen, a commercial build-out, a statement dining table, or doors and millwork for any space, we'll work with you from first sketch to final finish. Everything we build is made in-house — nothing is ever subbed out.</p>
-          <div class="stats-row">
-            <div class="stat">
+          <p class="section-body" style="margin-left:auto; margin-right:auto;">County Road Woodworking was built on a simple belief: that the best work is made by hand, with care, using the finest materials. We're a family-owned shop, and every project — big or small — gets treated like it's going into our own home.</p>
+          <p class="section-body section-body--spaced" style="margin-left:auto; margin-right:auto;">Whether you're looking for a custom kitchen, a commercial build-out, a statement dining table, or doors and millwork for any space, we'll work with you from first sketch to final finish. Everything we build is made in-house — nothing is ever subbed out.</p>
+          <div class="stats-row" style="justify-content:center;">
+            <div class="stat" style="text-align:center;">
               <span class="stat-num">15+</span>
               <span class="stat-label">Years Experience</span>
             </div>
-            <div class="stat">
+            <div class="stat" style="text-align:center;">
               <span class="stat-num">100%</span>
               <span class="stat-label">Built In-House</span>
             </div>
-            <div class="stat">
+            <div class="stat" style="text-align:center;">
               <span class="stat-num">100%</span>
               <span class="stat-label">Custom Work</span>
-            </div>
-          </div>
+            
+        </div>
+      </div>
+
           <a href="#contact" class="btn-primary">Start a Project</a>
         </div>
       </div>
@@ -165,7 +159,7 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="testimonials-section">
+  <section class="testimonials-section" style="display:none;">
     <div class="container">
       <p class="section-label section-label--center">What Clients Say</p>
       <h2 class="section-title section-title--center">Built on <em>Trust</em></h2>
@@ -203,7 +197,7 @@
         <div class="contact-info">
           <p class="section-label">Get in Touch</p>
           <h2 class="section-title">Let's Talk <em>Wood</em></h2>
-          <p class="section-body">Have a project in mind? We'd love to hear about it. Reach out and we'll get back to you within 1–2 business days.</p>
+          <p class="section-body" style="margin-left:auto; margin-right:auto;">Have a project in mind? We'd love to hear about it. Reach out and we'll get back to you within 1–2 business days.</p>
           <div class="contact-detail">
             <div class="contact-detail-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -213,7 +207,7 @@
             </div>
             <div class="contact-detail-text">
               <span class="contact-detail-label">Location</span>
-              <span class="contact-detail-value">County Road Woodworking — Your Town, WI</span>
+              <span class="contact-detail-value">County Road Woodworking — Stewardson, Illinois</span>
             </div>
           </div>
           <div class="contact-detail">
@@ -224,7 +218,7 @@
             </div>
             <div class="contact-detail-text">
               <span class="contact-detail-label">Phone</span>
-              <span class="contact-detail-value">(000) 000-0000</span>
+              <span class="contact-detail-value">217-500-0603</span>
             </div>
           </div>
           <div class="contact-detail">
@@ -236,37 +230,59 @@
             </div>
             <div class="contact-detail-text">
               <span class="contact-detail-label">Email</span>
-              <span class="contact-detail-value">hello@countyroadww.com</span>
+              <a class="contact-detail-value contact-detail-link" href="mailto:info@countyroadww.net">info@countyroadww.net</a>
             </div>
           </div>
         </div>
         <div class="contact-form-wrap">
-          <div class="contact-form">
+          <!--
+            Contact form delivery
+            ---------------------
+            Submissions go through FormSubmit.co, a free service that forwards
+            form posts to an email address with no account required.
+              • Endpoint:  https://formsubmit.co/info@countyroadww.net
+              • First time someone hits "Send Message", FormSubmit emails
+                info@countyroadww.net a one-time confirmation link. Click it
+                once and every future submission lands in the inbox.
+            To swap providers later (Formspree, Web3Forms, your own backend),
+            just change the form's `action` URL.
+          -->
+          <form class="contact-form"
+                action="https://formsubmit.co/info@countyroadww.net"
+                method="POST">
+            <!-- FormSubmit options -->
+            <input type="hidden" name="_subject" value="New website inquiry — County Road Woodworking">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://www.countyroadww.net/?sent=1">
+            <!-- Honeypot: bots fill this in; humans don't see it -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
             <div class="form-group">
               <label class="form-label" for="name">Your Name</label>
-              <input type="text" id="name" class="form-input" placeholder="Jane Smith">
+              <input type="text" id="name" name="name" class="form-input" placeholder="Jane Smith" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="email">Email Address</label>
-              <input type="email" id="email" class="form-input" placeholder="jane@email.com">
+              <input type="email" id="email" name="email" class="form-input" placeholder="jane@email.com" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="project">Project Type</label>
-              <select id="project" class="form-input">
+              <select id="project" name="project" class="form-input">
                 <option value="">Select a project type…</option>
                 <option>Custom Cabinetry</option>
+                <option>Commercial Project</option>
                 <option>Tables &amp; Furniture</option>
                 <option>Shelving &amp; Storage</option>
-                <option>Barn Doors &amp; Mantels</option>
+                <option>Doors &amp; Millwork</option>
                 <option>Other / Not Sure Yet</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label" for="message">Tell Us About Your Project</label>
-              <textarea id="message" class="form-input form-textarea" placeholder="Describe what you're looking to build, your timeline, and any details that might help…"></textarea>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="Describe what you're looking to build, your timeline, and any details that might help…" required></textarea>
             </div>
-            <button type="button" class="btn-primary btn-submit">Send Message</button>
-          </div>
+            <button type="submit" class="btn-primary btn-submit">Send Message</button>
+          </form>
         </div>
       </div>
     </div>
@@ -322,33 +338,58 @@
       cabinetry: {
         label: 'Custom Cabinetry',
         images: [
-          { src: 'gallery/cabinetry/29998.png', caption: 'Custom Service Counter' },
-          { src: 'gallery/cabinetry/30000.png', caption: 'Herringbone Bar Build' },
+          { src: 'gallery/cabinetry/distressed-kitchen-full.jpg',          caption: 'Distressed Antique-White Kitchen' },
+          { src: 'gallery/cabinetry/distressed-kitchen-range.jpg',         caption: 'Distressed Kitchen — Range Wall' },
+          { src: 'gallery/cabinetry/distressed-kitchen-view.jpg',          caption: 'Distressed Kitchen — Through the Pass' },
+          { src: 'gallery/cabinetry/distressed-kitchen-window.jpg',        caption: 'Distressed Kitchen — Window Detail' },
+          { src: 'gallery/cabinetry/distressed-kitchen-corner.jpg',        caption: 'Distressed Kitchen — Farmhouse Sink' },
+          { src: 'gallery/cabinetry/distressed-kitchen-farmhouse-sink.jpg',caption: 'Distressed Kitchen — Sink Close-Up' },
+          { src: 'gallery/cabinetry/white-kitchen-island.jpg',             caption: 'Bright White Kitchen with Island' },
+          { src: 'gallery/cabinetry/maple-kitchen-range.jpg',              caption: 'Maple Shaker Kitchen' },
+          { src: 'gallery/cabinetry/maple-kitchen-island.jpg',             caption: 'Maple Kitchen with Island' },
+          { src: 'gallery/cabinetry/hickory-pantry.jpg',                   caption: 'Knotty Hickory Pantry' },
+          { src: 'gallery/cabinetry/basement-bar-01.jpg',                  caption: 'Custom Basement Bar' },
+          { src: 'gallery/cabinetry/basement-bar-02.jpg',                  caption: 'Bar Cabinet & Sink' },
+          { src: 'gallery/cabinetry/basement-bar-wine-fridge.jpg',         caption: 'Bar with Wine Fridge' },
+          { src: 'gallery/cabinetry/oak-bathroom-vanity.jpg',              caption: 'Solid Oak Bathroom Vanity' },
+          { src: 'gallery/cabinetry/modern-vanity.jpg',                    caption: 'Modern Charcoal Vanity' },
+          { src: 'gallery/cabinetry/workshop-build-01.jpg',                caption: 'In the Shop — Cabinet Build' },
+          { src: 'gallery/cabinetry/workshop-build-02.jpg',                caption: 'In the Shop — Drawer Bank' },
+        ]
+      },
+      commercial: {
+        label: 'Commercial',
+        images: [
+          { src: 'gallery/commercial/bowling-bar-herringbone.png',     caption: 'Custom Herringbone Bar Front' },
+          { src: 'gallery/commercial/bowling-counter-01.png',          caption: 'Guest Service Counter' },
+          { src: 'gallery/commercial/bowling-counter-02.png',          caption: 'Service Counter & Dining' },
+          { src: 'gallery/commercial/guest-service-counter.jpg',       caption: 'Chevron Guest Service Build' },
+          { src: 'gallery/commercial/bowling-dart-room.png',           caption: 'Dart Room — Chevron Feature Wall' },
+          { src: 'gallery/commercial/bowling-dining-hall.png',         caption: 'Commercial Dining Hall' },
+          { src: 'gallery/commercial/bowling-troom-wall.png',          caption: 'Reclaimed Wood Restroom Wall' },
+          { src: 'gallery/commercial/bowling-restroom-door-women.png', caption: 'Custom Commercial Restroom Door' },
+          { src: 'gallery/commercial/bowling-restroom-door-men.png',   caption: 'Custom Commercial Restroom Door' },
         ]
       },
       tables: {
         label: 'Tables & Furniture',
         images: [
-          { src: 'gallery/tables/29999.png', caption: 'Built-In Counter & Seating' },
-          { src: 'gallery/tables/30009.png', caption: 'Dart Room High-Tops' },
-          { src: 'gallery/tables/30010.png', caption: 'Dining Hall' },
+          { src: 'gallery/tables/dining-windsor-chairs.jpg', caption: 'Black Dining Set with Windsor Chairs' },
+          { src: 'gallery/tables/dining-table-detail.jpg',   caption: 'Painted Farmhouse Dining Table' },
         ]
       },
       shelving: {
         label: 'Shelving & Storage',
         images: [
-          // No photos in this category yet — drop images into
-          // gallery/shelving/ and add entries here when ready.
+          { src: 'gallery/shelving/garage-storage-wall-01.jpg', caption: 'Custom Garage Storage & Cabinet Wall' },
+          { src: 'gallery/shelving/garage-storage-wall-02.jpg', caption: 'Built-In Storage & Shelving System' },
         ]
       },
       specialty: {
         label: 'Doors & Millwork',
         images: [
-          { src: 'gallery/specialty/30011.png', caption: 'Custom Entrance Doors' },
-          { src: 'gallery/specialty/30012.png', caption: 'Carved Entrance Detail' },
-          { src: 'gallery/specialty/30008.png', caption: 'Reclaimed Wood Wall' },
-          { src: 'gallery/specialty/30001.png', caption: 'Custom Interior Door' },
-          { src: 'gallery/specialty/30007.png', caption: 'Custom Interior Door' },
+          { src: 'gallery/specialty/entrance-doors-husker.png',        caption: 'Custom Entrance Doors' },
+          { src: 'gallery/specialty/entrance-doors-husker-detail.png', caption: 'Carved Entrance Detail' },
         ]
       },
     };
