@@ -12,15 +12,66 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav id="mainNav">
+    <div class="nav-left" aria-hidden="true"></div>
     <a href="#home" class="nav-logo"><img src="countryroadwoodworking.png" alt="County Road Woodworking" class="nav-logo-img"></a>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-item--social">
+          <button class="nav-social-toggle" aria-expanded="false" aria-haspopup="true" type="button">
+            Social
+            <svg class="nav-social-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="nav-social-dropdown" role="menu">
+            <li role="none">
+              <a href="https://www.facebook.com/profile.php?id=61589363566165" target="_blank" rel="noopener noreferrer" class="nav-social-link" role="menuitem">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                Facebook
+              </a>
+            </li>
+            <li role="none">
+              <a href="https://www.tiktok.com/@countyroadwoodwor" target="_blank" rel="noopener noreferrer" class="nav-social-link" role="menuitem">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+                TikTok
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" type="button">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="#home" class="nav-drawer-link">Home</a></li>
+      <li><a href="#gallery" class="nav-drawer-link">Gallery</a></li>
+      <li><a href="#about" class="nav-drawer-link">About</a></li>
+      <li><a href="#contact" class="nav-drawer-link">Contact</a></li>
+      <li class="nav-drawer-divider">Social</li>
+      <li>
+        <a href="https://www.facebook.com/profile.php?id=61589363566165" target="_blank" rel="noopener noreferrer" class="nav-drawer-link nav-drawer-link--social">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tiktok.com/@countyroadwoodwor" target="_blank" rel="noopener noreferrer" class="nav-drawer-link nav-drawer-link--social">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+          TikTok
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <!-- HERO -->
   <section id="home" class="hero">
@@ -369,6 +420,7 @@
           { src: 'gallery/commercial/bowling-troom-wall.png',          caption: 'Reclaimed Wood Restroom Wall' },
           { src: 'gallery/commercial/bowling-restroom-door-women.png', caption: 'Custom Commercial Restroom Door' },
           { src: 'gallery/commercial/bowling-restroom-door-men.png',   caption: 'Custom Commercial Restroom Door' },
+          { src: 'gallery/commercial/wallimage.png',                   caption: 'Custom Wood Plank Feature Wall' },
         ]
       },
       tables: {
@@ -389,6 +441,9 @@
         label: 'Doors & Millwork',
         images: [
           { src: 'gallery/specialty/entrance-doors-husker-detail.png', caption: 'Carved Entrance Detail' },
+          { src: 'gallery/specialty/bowling-restroom-door-women.png', caption: 'Custom Commercial Restroom Door' },
+          { src: 'gallery/specialty/bowling-restroom-door-men.png',   caption: 'Custom Commercial Restroom Door' },
+          { src: 'gallery/specialty/wallimage.png',                   caption: 'Custom Wood Plank Feature Wall' },
         ]
       },
     };
@@ -549,6 +604,67 @@
 
       // ---- Initial render ----
       renderGallery(currentGalleryId);
+    })();
+  </script>
+
+  <script>
+    /* Social dropdown — hover + click/keyboard toggle */
+    (function () {
+      const item   = document.querySelector('.nav-item--social');
+      const toggle = item && item.querySelector('.nav-social-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function (e) {
+        const open = item.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+        e.stopPropagation();
+      });
+      document.addEventListener('click', function () {
+        item.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          item.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    /* Hamburger / mobile drawer */
+    (function () {
+      const btn    = document.getElementById('navHamburger');
+      const drawer = document.getElementById('navDrawer');
+      if (!btn || !drawer) return;
+
+      function openMenu() {
+        btn.classList.add('is-open');
+        drawer.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        btn.classList.remove('is-open');
+        drawer.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      btn.addEventListener('click', function () {
+        btn.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+
+      /* Close when any drawer link is clicked */
+      drawer.querySelectorAll('.nav-drawer-link').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      /* Close on Escape */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
     })();
   </script>
 
