@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.countyroadww.net/sitemap.xml
